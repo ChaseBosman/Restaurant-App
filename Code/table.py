@@ -3,8 +3,6 @@ import sqlite3
 from tkinter import *
 from functools import partial
 
-ticket_count_daily = 0
-
 
 class Table:
     def __init__(self, table_number, ticket_num):
