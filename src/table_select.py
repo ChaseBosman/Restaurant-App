@@ -4,7 +4,7 @@ import table
 
 class TableSelect:
 
-    def __init__(self, master = None):
+    def __init__(self, master=None):
         # current count of tables
         self.ticket_count = 0
         self.table_count = 0
