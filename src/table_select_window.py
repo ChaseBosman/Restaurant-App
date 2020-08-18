@@ -1,16 +1,17 @@
 from tkinter import *
-import table
+from table_ticket import TableTicket
 
 
 class TableSelect:
 
     def __init__(self, master=None):
+        self.master = master
         # current count of tables
         self.ticket_count = 0
         self.table_count = 0
-        self.table_objs = []
+        self.table_objects = []
         # initialize and set Tk windows
-        master.geometry("200x200")
+        self.master.geometry("200x200")
         self.create_buttons()
 
     # method to delete text from entry
@@ -20,19 +21,23 @@ class TableSelect:
     # method to read entry when enter is pressed and do proper call
     def enter_text(self):
         # Check if the current entered table is in the system
-        for curr_table in self.table_objs:
+        for curr_table in self.table_objects:
             if curr_table.get_table() == self.tbl_entry.get():
                 print("old table")
-                #curr_table.display_families()
+                curr_table.display_families(self.master)
+                self.tbl_entry.delete(0, END)
                 return
 
-        # At this point the table is considered a new table, and it is now being entered into the system
-        print("new table")
-        self.table_objs.append(table.Table(self.tbl_entry.get(), self.ticket_count))
+        # With no return, the table is considered a new table and is now being entered into the system
+        print("new table", self.tbl_entry.get())
+        self.table_objects.append(TableTicket(self.ticket_count, self.tbl_entry.get()))
         self.ticket_count += 1
         self.table_count += 1
+
+        # delete tbl_entry window text
         self.tbl_entry.delete(0, END)
-        print(self.table_objs[self.table_count - 1].get_table())
+
+        # print(self.table_objs[self.table_count].get_table())
         return
 
     def set_text(self, text):
