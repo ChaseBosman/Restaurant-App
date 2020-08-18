@@ -37,7 +37,6 @@ class TableSelect:
         # delete tbl_entry window text
         self.tbl_entry.delete(0, END)
 
-        # print(self.table_objs[self.table_count].get_table())
         return
 
     def set_text(self, text):

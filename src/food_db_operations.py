@@ -1,6 +1,7 @@
 import sqlite3
 
 
+# context manager for food database
 class FoodDbOperations:
     def __init__(self, file='food.db'):
         self.file = file
@@ -14,10 +15,11 @@ class FoodDbOperations:
         self.conn.commit()
         self.conn.close()
 
-
+'''
 with FoodDbOperations() as cur:
     cur.execute('select type_name from drink_type')
 
     rows = cur.fetchall()
     for row in rows:
         print(*row)
+'''
