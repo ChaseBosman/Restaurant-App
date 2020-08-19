@@ -11,7 +11,7 @@ class TableSelect:
         self.table_count = 0
         self.table_objects = []
         # initialize and set Tk windows
-        self.master.geometry("200x200")
+        self.master.geometry("240x200")
         self.create_buttons()
 
     # method to delete text from entry
