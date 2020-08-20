@@ -25,7 +25,6 @@ class ItemsWindow(Toplevel):
                             "(select food_type_id from food_type where type_name = ?)", (self.category,))
                 food = cur.fetchall()
                 for row in food:
-                    print(row[0])
                     self.item_buttons.append(
                         Button(self, text=row[0], padx=5, pady=5))
                     # add self.category_count_drinks to category_buttons index to account for button count in list
@@ -40,9 +39,10 @@ class ItemsWindow(Toplevel):
                             "(select drink_type_id from drink_type where type_name = ?)", (self.category,))
                 food = cur.fetchall()
                 for row in food:
-                    print(row[0])
                     self.item_buttons.append(
                         Button(self, text=row[0], padx=5, pady=5))
                     # add self.category_count_drinks to category_buttons index to account for button count in list
                     self.item_buttons[self.item_count].grid(sticky=N + S + E + W, row=self.item_count, column=25)
                     self.item_count += 1
+
+

@@ -18,12 +18,12 @@ class TableSelect:
     def del_text(self):
         self.tbl_entry.delete(len(self.tbl_entry.get()) - 1, END)
 
-    # method to read entry when enter is pressed and do proper call
+    # method to read entry when enter_but is pressed
     def enter_text(self):
         # Check if the current entered table is in the system
         for curr_table in self.table_objects:
             if curr_table.get_table() == self.tbl_entry.get():
-                print("old table")
+                # if in table list then display available category options
                 curr_table.display_families(self.master)
                 self.tbl_entry.delete(0, END)
                 return
