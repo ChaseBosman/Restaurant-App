@@ -85,10 +85,10 @@ class CategoryWindow(Toplevel):
         with FoodDbOperations() as cur:
             cur.execute("select drink_cost from drink_item where drink_name = ?", (item,))
             self.item_cost = cur.fetchone()
-            self.selected_items_listbox.insert(END, item + "    " + str(self.item_cost[0]))
+            self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
             self.item_window.selected_items_listbox.insert(END, item + "    " + str(self.item_cost[0]))
             self.selected_items_total += self.item_cost[0]
-            self.total_sum.set("$" + str(float(self.selected_items_total)))
+            self.total_sum.set("$"+str(format(self.selected_items_total, '.2f')))
 
     # this method is ran through open_food_items_menu
     def add_food(self, item):
@@ -96,8 +96,8 @@ class CategoryWindow(Toplevel):
         with FoodDbOperations() as cur:
             cur.execute("select food_cost from food_item where food_name = ?", (item,))
             self.item_cost = cur.fetchone()
-            self.selected_items_listbox.insert(END, item + "    " + str(self.item_cost[0]))
-            self.item_window.selected_items_listbox.insert(END, item + "    " + str(self.item_cost[0]))
+            self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
+            self.item_window.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
             self.selected_items_total += self.item_cost[0]
-            self.total_sum.set("$"+str(float(self.selected_items_total)))
+            self.total_sum.set("$"+str(format(self.selected_items_total, '.2f')))
 

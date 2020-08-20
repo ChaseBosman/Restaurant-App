@@ -29,7 +29,6 @@ class TableSelect:
                 return
 
         # With no return, the table is considered a new table and is now being entered into the system
-        print("new table", self.tbl_entry.get())
         self.table_objects.append(TableTicket(self.ticket_count, self.tbl_entry.get()))
         self.ticket_count += 1
         self.table_count += 1
