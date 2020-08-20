@@ -15,9 +15,17 @@ class TableTicket:
     def display_families(self, master):
         self.category_window = CategoryWindow(master)
         self.category_window.commit_items_button.config(command=lambda: self.commit_changes())
+        self.repopulate_committed()
 
     def commit_changes(self):
-        self.food_committed = self.category_window.selected_food_items
-        self.drinks_committed = self.category_window.selected_drink_items
+        self.food_committed.extend(self.category_window.selected_food_items)
+        self.drinks_committed.extend(self.category_window.selected_drink_items)
+        self.category_window.destroy()
 
+    def repopulate_committed(self):
+        for item in self.food_committed:
+            self.category_window.repopulate_food(item)
+
+        for item in self.drinks_committed:
+            self.category_window.repopulate_drinks(item)
 

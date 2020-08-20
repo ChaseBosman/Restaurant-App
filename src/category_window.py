@@ -67,31 +67,35 @@ class CategoryWindow(Toplevel):
         self.commit_items_button = Button(self, text="Commit Items")
         self.commit_items_button.grid(row=max(self.category_count_food, self.category_count_drinks) + 2, column=1)
 
+        # Destroy TopLevel screen without saving
+        self.back_button = Button(self, command=lambda: self.destroy(), text="Exit without saving")
+        self.back_button.grid(sticky=S + E, row=max(self.category_count_food, self.category_count_drinks) + 2, column=2)
+
     def open_food_items_menu(self, category):
         self.item_window = ItemsWindow(self.top, category, True)
         for item in range(0, self.item_window.item_count):
             self.item_window.item_buttons[item].config(command=lambda
-                selected_item=self.item_window.item_buttons[item]['text']: self.add_food(selected_item))
+                selected_item=self.item_window.item_buttons[item]['text']: self.add_food_button(selected_item))
 
     def open_drink_items_menu(self, category):
         self.item_window = ItemsWindow(self.top, category, False)
         for item in range(0, self.item_window.item_count):
             self.item_window.item_buttons[item].config(command=lambda
-                selected_item=self.item_window.item_buttons[item]['text']: self.add_drink(selected_item))
+                selected_item=self.item_window.item_buttons[item]['text']: self.add_drink_button(selected_item))
 
-    # this method is ran through open_drink_items_menu
-    def add_drink(self, item):
+    # this method is executed through open_drink_items_menu
+    def add_drink_button(self, item):
         self.selected_drink_items.append(item)
         with FoodDbOperations() as cur:
             cur.execute("select drink_cost from drink_item where drink_name = ?", (item,))
             self.item_cost = cur.fetchone()
             self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
-            self.item_window.selected_items_listbox.insert(END, item + "    " + str(self.item_cost[0]))
+            self.item_window.selected_items_listbox.insert(END, item + "    " + (format(self.item_cost[0], '.2f')))
             self.selected_items_total += self.item_cost[0]
             self.total_sum.set("$"+str(format(self.selected_items_total, '.2f')))
 
-    # this method is ran through open_food_items_menu
-    def add_food(self, item):
+    # this method is executed through open_food_items_menu
+    def add_food_button(self, item):
         self.selected_food_items.append(item)
         with FoodDbOperations() as cur:
             cur.execute("select food_cost from food_item where food_name = ?", (item,))
@@ -100,4 +104,22 @@ class CategoryWindow(Toplevel):
             self.item_window.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
             self.selected_items_total += self.item_cost[0]
             self.total_sum.set("$"+str(format(self.selected_items_total, '.2f')))
+
+    # this method is executed through table_ticket.py's repopulate
+    def repopulate_drinks(self, item):
+        with FoodDbOperations() as cur:
+            cur.execute("select drink_cost from drink_item where drink_name = ?", (item,))
+            self.item_cost = cur.fetchone()
+            self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
+            self.selected_items_total += self.item_cost[0]
+            self.total_sum.set("$" + str(format(self.selected_items_total, '.2f')))
+
+    # this method is executed through open_food_items_menu
+    def repopulate_food(self, item):
+        with FoodDbOperations() as cur:
+            cur.execute("select food_cost from food_item where food_name = ?", (item,))
+            self.item_cost = cur.fetchone()
+            self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
+            self.selected_items_total += self.item_cost[0]
+            self.total_sum.set("$" + str(format(self.selected_items_total, '.2f')))
 
