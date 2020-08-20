@@ -3,11 +3,11 @@ import sqlite3
 
 # context manager for food database
 class FoodDbOperations:
-    def __init__(self, file='food.db'):
-        self.file = file
+    def __init__(self, path='items_and_records_db/food.db'):
+        self.path = path
 
     def __enter__(self):
-        self.conn = sqlite3.connect(self.file)
+        self.conn = sqlite3.connect(self.path)
         self.conn.row_factory = sqlite3.Row
         return self.conn.cursor()
 
