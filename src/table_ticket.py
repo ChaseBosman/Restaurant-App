@@ -22,7 +22,7 @@ class TableTicket:
         self.food_committed.extend(self.category_window.selected_food_items)
         self.drinks_committed.extend(self.category_window.selected_drink_items)
         comm_socket_food = CommittedWaiterSocket(self.category_window.selected_food_items, 8080)
-        comm_socket_drinks = CommittedWaiterSocket(self.category_window.selected_drink_items, 8081)
+        # comm_socket_drinks = CommittedWaiterSocket(self.category_window.selected_drink_items, 8081)
         # comm_socket.
         self.category_window.destroy()
 
