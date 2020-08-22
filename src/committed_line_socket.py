@@ -2,14 +2,12 @@ import socket
 import pickle
 
 
-HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-PORT = 8080  # Port to listen on (non-privileged ports are > 1023)
-
-
-class CommittedServerSocket:
+class CommittedLineSocket:
     def __init__(self):
+        self.host = '127.0.0.1'  # The server's hostname or IP address
+        self.port = 8080  # The port used by the server
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.bind((HOST, PORT))
+            s.bind((self.host, self.port))
             s.listen()
             conn, addr = s.accept()
             with conn:
