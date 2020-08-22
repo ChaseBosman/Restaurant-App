@@ -1,5 +1,5 @@
 from category_window import CategoryWindow
-
+from committed_client_socket import CommittedClientSocket
 
 class TableTicket:
     def __init__(self, check_number, table_num, guests_num=1):
@@ -20,6 +20,8 @@ class TableTicket:
     def commit_changes(self):
         self.food_committed.extend(self.category_window.selected_food_items)
         self.drinks_committed.extend(self.category_window.selected_drink_items)
+        comm_socket = CommittedClientSocket(self.category_window.selected_food_items)
+        # comm_socket.
         self.category_window.destroy()
 
     def repopulate_committed(self):

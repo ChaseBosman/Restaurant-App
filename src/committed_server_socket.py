@@ -1,7 +1,9 @@
 import socket
+import pickle
+
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
+PORT = 8080  # Port to listen on (non-privileged ports are > 1023)
 
 
 class CommittedServerSocket:
@@ -12,11 +14,12 @@ class CommittedServerSocket:
             conn, addr = s.accept()
             with conn:
                 print('Connected by', addr)
-                while True:
-                    data = conn.recv(1024).decode()
-                    if not data:
-                        break
-                    print(data)
+                completed = False
+                while not completed:
+                    data = conn.recv(1024)
+                    decoded = pickle.loads(data)
+                    print(str(decoded))
+                    completed = True
 
 
 
