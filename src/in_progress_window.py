@@ -7,9 +7,13 @@ class InProgressWindow:
     def __init__(self, master=None):
         self.master = master
         self.master.geometry("300x300")
+        self.master.title("To-Do")
+
         self.create_widgets()
+
         self.active_socket = CommittedLineSocket()
         threading.Thread(target=self.active_socket.accept).start()
+
         self.add_item()
 
     def create_widgets(self):
@@ -25,7 +29,7 @@ class InProgressWindow:
         while len(self.active_socket.to_add) > 0:
             # item = self.active_socket.to_add.pop(0)
             self.progress_listbox.insert(END, self.active_socket.to_add.pop(0))
-        self.master.after(1000, self.add_item)
+        self.master.after(5000, self.add_item)
 
 
 if __name__ == "__main__":

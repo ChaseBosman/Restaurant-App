@@ -6,6 +6,7 @@ class ItemsWindow(Toplevel):
     def __init__(self, master, category, is_food):
         Toplevel.__init__(self, master)
         self.geometry("350x200")
+        self.title("Select items")
         # describes the food's category (baked, alc mixed)
         self.category = category
         # boolean, describes if menu is for food or a drink

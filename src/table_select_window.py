@@ -13,6 +13,7 @@ class TableSelectWindow:
         self.table_objects = []
         # initialize and set Tk windows
         self.master.geometry("240x200")
+        self.master.title("Choose a table")
         self.create_buttons()
         self.define_socket()
 
@@ -31,7 +32,8 @@ class TableSelectWindow:
                 return
 
         # With no return, the table is considered a new table and is now being entered into the system
-        self.table_objects.append(TableTicket(self.ticket_count, self.tbl_entry.get(), self.sock))
+        self.table_objects.append(TableTicket(self.sock, self.ticket_count, self.tbl_entry.get()))
+        self.table_objects[-1].display_families(self.master)
         self.ticket_count += 1
         self.table_count += 1
 

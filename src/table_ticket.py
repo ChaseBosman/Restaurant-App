@@ -3,13 +3,13 @@ import pickle
 
 
 class TableTicket:
-    def __init__(self, check_number, table_num, sock, guests_num=1):
+    def __init__(self,  sock, check_number, table_num, guests_num=1):
         self.check_num = check_number
         self.table_num = table_num
         self.guests = guests_num
         self.food_committed = []
         self.drinks_committed = []
-        self.sock = sock
+        self.socket_connection = sock
 
     def get_table(self):
         return self.table_num
@@ -33,7 +33,7 @@ class TableTicket:
         self.category_window.destroy()
 
     def send_data(self, data):
-        self.sock.sendall(pickle.dumps(data))
+        self.socket_connection.sendall(pickle.dumps(data))
 
     def repopulate_committed(self):
         for item in self.food_committed:

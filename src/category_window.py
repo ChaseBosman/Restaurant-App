@@ -7,6 +7,8 @@ class CategoryWindow(Toplevel):
     def __init__(self, master):
         self.top = Toplevel.__init__(self, master)
         self.geometry("450x300")
+        self.title("Select a category")
+
 
         self.selected_food_items = []
         self.selected_drink_items = []

@@ -12,11 +12,11 @@ class CommittedLineSocket:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind((self.host, self.port))
             s.listen()
-            conn, addr = s.accept()
-            with conn:
-                print('Connected by', addr)
+            client_connection, client_address = s.accept()
+            with client_connection:
+                print('Connected by', client_address)
                 while True:
-                    data = conn.recv(1024)
+                    data = client_connection.recv(1024)
                     if not data:
                         break
                     decoded = pickle.loads(data)
