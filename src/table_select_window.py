@@ -1,8 +1,9 @@
 from tkinter import *
 from table_ticket import TableTicket
+import socket
 
 
-class TableSelect:
+class TableSelectWindow:
 
     def __init__(self, master=None):
         self.master = master
@@ -13,6 +14,7 @@ class TableSelect:
         # initialize and set Tk windows
         self.master.geometry("240x200")
         self.create_buttons()
+        self.define_socket()
 
     # method to delete text from entry
     def del_text(self):
@@ -29,7 +31,7 @@ class TableSelect:
                 return
 
         # With no return, the table is considered a new table and is now being entered into the system
-        self.table_objects.append(TableTicket(self.ticket_count, self.tbl_entry.get()))
+        self.table_objects.append(TableTicket(self.ticket_count, self.tbl_entry.get(), self.sock))
         self.ticket_count += 1
         self.table_count += 1
 
@@ -75,8 +77,15 @@ class TableSelect:
         self.delete_but.grid(row=4, column=1)
         self.enter_but.grid(row=4, column=3)
 
+    def define_socket(self):
+        host = '127.0.0.1'
+        port = 8080
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((host, port))
+        self.sock = sock
+
 
 if __name__ == "__main__":
     root_window = Tk()
-    curr_menu = TableSelect(master=root_window)
+    curr_menu = TableSelectWindow(master=root_window)
     root_window.mainloop()

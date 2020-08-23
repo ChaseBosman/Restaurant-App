@@ -15,18 +15,16 @@ class CommittedLineSocket:
             conn, addr = s.accept()
             with conn:
                 print('Connected by', addr)
-                completed = False
-
-                while not completed:
+                while True:
                     data = conn.recv(1024)
-                    if data:
-                        decoded = pickle.loads(data)
-                        print(decoded)
-                        for item in decoded:
-                            self.to_add.append(item)
+                    if not data:
+                        break
+                    decoded = pickle.loads(data)
+                    print(decoded)
+                    for item in decoded:
+                        self.to_add.append(item)
 
 
 if __name__ == "__main__":
     connection = CommittedLineSocket()
-
 

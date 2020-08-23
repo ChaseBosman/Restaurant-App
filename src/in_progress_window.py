@@ -2,6 +2,7 @@ import threading
 from tkinter import *
 from committed_line_socket import CommittedLineSocket
 
+
 class InProgressWindow:
     def __init__(self, master=None):
         self.master = master
@@ -31,3 +32,4 @@ if __name__ == "__main__":
     root_window = Tk()
     curr_menu = InProgressWindow(master=root_window)
     root_window.mainloop()
+
