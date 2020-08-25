@@ -21,6 +21,8 @@ class CommittedLineSocket:
                         break
                     decoded = pickle.loads(data)
                     print(decoded)
+                    table = decoded.pop(0)
+                    print(table)
                     for item in decoded:
                         self.to_add.append(item)
 

@@ -33,6 +33,7 @@ class TableTicket:
         self.category_window.destroy()
 
     def send_data(self, data):
+        data.insert(0, self.table_num)
         self.socket_connection.sendall(pickle.dumps(data))
 
     def repopulate_committed(self):
