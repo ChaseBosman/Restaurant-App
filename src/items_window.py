@@ -1,5 +1,5 @@
 from tkinter import *
-from food_db_operations import FoodDbOperations
+from db_context_manager import DbContextManager
 
 
 class ItemsWindow(Toplevel):
@@ -21,7 +21,7 @@ class ItemsWindow(Toplevel):
 
         # Open food database through context manager
         if self.is_food:
-            with FoodDbOperations() as cur:
+            with DbContextManager() as cur:
                 # add item buttons relating to category
                 cur.execute("select food_name from food_item where food_type_id = "
                             "(select food_type_id from food_type where type_name = ?)", (self.category,))
@@ -35,7 +35,7 @@ class ItemsWindow(Toplevel):
 
         # chosen category is a drink, use drink_item table
         elif not self.is_food:
-            with FoodDbOperations() as cur:
+            with DbContextManager() as cur:
                 # add item buttons relating to category
                 cur.execute("select drink_name from drink_item where drink_type_id = "
                             "(select drink_type_id from drink_type where type_name = ?)", (self.category,))

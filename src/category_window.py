@@ -1,5 +1,5 @@
 from tkinter import *
-from food_db_operations import FoodDbOperations
+from db_context_manager import DbContextManager
 from items_window import ItemsWindow
 
 
@@ -8,7 +8,6 @@ class CategoryWindow(Toplevel):
         self.top = Toplevel.__init__(self, master)
         self.geometry("450x300")
         self.title("Select a category")
-
 
         self.selected_food_items = []
         self.selected_drink_items = []
@@ -25,7 +24,7 @@ class CategoryWindow(Toplevel):
         self.category_count_food = 0
 
         # Open food database through context manager
-        with FoodDbOperations() as cur:
+        with DbContextManager() as cur:
             # add drink type buttons
             cur.execute("select type_name from drink_type")
             drinks = cur.fetchall()
@@ -88,7 +87,7 @@ class CategoryWindow(Toplevel):
     # this method is executed through open_drink_items_menu
     def add_drink_button(self, item):
         self.selected_drink_items.append(item)
-        with FoodDbOperations() as cur:
+        with DbContextManager() as cur:
             cur.execute("select drink_cost from drink_item where drink_name = ?", (item,))
             self.item_cost = cur.fetchone()
             self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
@@ -99,7 +98,7 @@ class CategoryWindow(Toplevel):
     # this method is executed through open_food_items_menu
     def add_food_button(self, item):
         self.selected_food_items.append(item)
-        with FoodDbOperations() as cur:
+        with DbContextManager() as cur:
             cur.execute("select food_cost from food_item where food_name = ?", (item,))
             self.item_cost = cur.fetchone()
             self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
@@ -109,7 +108,7 @@ class CategoryWindow(Toplevel):
 
     # this method is executed through table_ticket.py's repopulate
     def repopulate_drinks(self, item):
-        with FoodDbOperations() as cur:
+        with DbContextManager() as cur:
             cur.execute("select drink_cost from drink_item where drink_name = ?", (item,))
             self.item_cost = cur.fetchone()
             self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))
@@ -118,7 +117,7 @@ class CategoryWindow(Toplevel):
 
     # this method is executed through open_food_items_menu
     def repopulate_food(self, item):
-        with FoodDbOperations() as cur:
+        with DbContextManager() as cur:
             cur.execute("select food_cost from food_item where food_name = ?", (item,))
             self.item_cost = cur.fetchone()
             self.selected_items_listbox.insert(END, item + "    " + str(format(self.item_cost[0], '.2f')))

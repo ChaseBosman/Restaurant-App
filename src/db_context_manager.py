@@ -2,7 +2,7 @@ import sqlite3
 
 
 # context manager for food database
-class FoodDbOperations:
+class DbContextManager:
     def __init__(self, path='items_and_records_db/food.db'):
         self.path = path
 
