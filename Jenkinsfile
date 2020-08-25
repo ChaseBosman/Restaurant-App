@@ -9,10 +9,10 @@ pipeline {
             }
             steps {
                 sh 'python3 -m py_compile src/table_select_window.py src/table_ticket.py src/category_window.py src/items_window.py src/db_context_manager.py'
-                stash(name: 'compiled-results', includes: 'src/*.py*') 
+                stash(name: 'compiled-results', includes: 'src/*.py*')
             }
         }
-	    stage('Deliver') {
+	stage('Deliver') {
             agent any
             environment {
                 VOLUME = '$(pwd)/src:/src'
@@ -26,7 +26,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts "${env.BUILD_ID}/dist/*"
+                    archiveArtifacts "${env.BUILD_ID}/src/dist/*"
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
             }
