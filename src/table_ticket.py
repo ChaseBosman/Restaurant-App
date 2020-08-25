@@ -7,8 +7,10 @@ class TableTicket:
         self.check_num = check_number
         self.table_num = table_num
         self.guests = guests_num
+
         self.food_committed = []
         self.drinks_committed = []
+        self.commits = 0
         self.socket_connection = sock
 
     def get_table(self):
@@ -34,6 +36,8 @@ class TableTicket:
 
     def send_data(self, data):
         data.insert(0, self.table_num)
+        data.insert(1, self.commits)
+        self.commits += 1
         self.socket_connection.sendall(pickle.dumps(data))
 
     def repopulate_committed(self):
