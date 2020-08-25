@@ -12,7 +12,7 @@ pipeline {
                 stash(name: 'compiled-results', includes: 'src/*.py*') 
             }
         }
-	stage('Deliver') {
+	    stage('Deliver') {
             agent any
             environment {
                 VOLUME = '$(pwd)/src:/src'
