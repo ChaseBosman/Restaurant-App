@@ -30,15 +30,18 @@ class InProgressWindow:
 
     def add_order(self):
         while len(self.active_socket.to_add) > 0:
+            # retrieve first queued order retrieved from the socket
             new_order = self.active_socket.to_add.pop(0)
+            # retrieve table and order numbers from the new order
             table_num = new_order.pop(0)
             order_num = new_order.pop(0)
             print(table_num, order_num)
 
+            # add items to the screen
             for item in new_order:
                 self.progress_listbox.insert(END, str(table_num) + '-' + str(order_num) + ', ' + str(item))
 
-            # assume new table until table found in table_queue
+            # add items to the order queue structure, assume it is a new table until table found in table_queue
             new_table = True
             for table in self.table_queue:
                 if table.get_table_num() == table_num:

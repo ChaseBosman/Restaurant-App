@@ -12,7 +12,9 @@ class TableQueueStructure:
         self.add_order(order_num, items)
 
     def add_order(self, order_num, items):
+        # create a new order data structure
         new_order = OrderStructure(order_num, items)
+        # insert it into the table's order queue
         self.active_orders.insert(len(self.active_orders), new_order)
         self.active_orders_count += 1
         print(self.active_orders_count)
