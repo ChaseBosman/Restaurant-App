@@ -20,12 +20,7 @@ class CommittedLineSocket:
                     if not data:
                         break
                     decoded = pickle.loads(data)
-                    print(decoded)
-                    table = decoded.pop(0)
-                    table_commit = decoded.pop(0)
-                    print(table, table_commit)
-                    for item in decoded:
-                        self.to_add.append([str(table) + '-' + str(table_commit), item])
+                    self.to_add.append(decoded)
 
 
 if __name__ == "__main__":
