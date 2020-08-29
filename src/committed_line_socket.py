@@ -25,7 +25,7 @@ class CommittedLineSocket:
                     table_commit = decoded.pop(0)
                     print(table, table_commit)
                     for item in decoded:
-                        self.to_add.append([str(table) + '-' + str(table_commit), item])
+                        self.to_add.append([str(table) + '-' + str(table_commit) + ',', item])
 
 
 if __name__ == "__main__":
