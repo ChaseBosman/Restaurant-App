@@ -36,7 +36,7 @@ class TableTicket:
 
     def send_data(self, data):
         data.insert(0, self.table_num)
-        data.insert(1, self.commits)
+        data.insert(1, str(self.commits))
         self.commits += 1
         self.socket_connection.sendall(pickle.dumps(data))
 

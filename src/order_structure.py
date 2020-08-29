@@ -11,3 +11,9 @@ class OrderStructure:
         # count of items still being cooked on the line
         self.order_items_remaining = self.order_items_count
 
+    def get_order_num(self):
+        return self.order_num
+
+    def decrease_items_remaining(self):
+        self.order_items_remaining -= 1
+        return self.order_items_remaining

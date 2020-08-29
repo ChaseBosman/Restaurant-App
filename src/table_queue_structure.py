@@ -9,10 +9,16 @@ class TableQueueStructure:
         self.active_orders = []
         self.active_orders_count = 0
 
+        self.add_order(order_num, items)
+
     def add_order(self, order_num, items):
         new_order = OrderStructure(order_num, items)
-        self.active_orders[self.active_orders_count] = new_order
+        self.active_orders.insert(len(self.active_orders), new_order)
         self.active_orders_count += 1
+        print(self.active_orders_count)
+
+    def get_table_num(self):
+        return self.table_num
 
 
 
