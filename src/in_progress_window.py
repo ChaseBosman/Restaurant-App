@@ -69,7 +69,6 @@ class InProgressWindow:
         print(table, table_order, food_item)
         self.progress_listbox.delete(item_selected[0])
 
-
 if __name__ == "__main__":
     root_window = Tk()
     curr_menu = InProgressWindow(master=root_window)
