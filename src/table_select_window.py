@@ -44,7 +44,7 @@ class TableSelectWindow:
         return
 
     def membership(self):
-        new_window = MembershipWindow(self.master)
+        MembershipWindow(self.master)
         return
 
     def set_text(self, text):
