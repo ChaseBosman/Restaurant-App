@@ -1,6 +1,6 @@
 from tkinter import *
 from table_ticket import TableTicket
-from membership_window import MembershipWindow
+from phone_number_window import PhoneNumberWindow
 import socket
 
 
@@ -40,11 +40,10 @@ class TableSelectWindow:
 
         # delete tbl_entry window text
         self.tbl_entry.delete(0, END)
-
         return
 
     def membership(self):
-        MembershipWindow(self.master)
+        PhoneNumberWindow(self.master)
         return
 
     def set_text(self, text):
