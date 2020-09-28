@@ -1,5 +1,5 @@
 from tkinter import *
-
+from json_handler import JsonHandler
 
 class MembershipWindow(Toplevel):
     def __init__(self, master, number):
@@ -42,7 +42,13 @@ class MembershipWindow(Toplevel):
         self.state_label.grid(row=6, column=0)
         self.state_entry.grid(row=6, column=1, columnspan=10)
 
-        self.enter_but = Button(self, text="Enter")
-
+        self.enter_but = Button(self, text="Enter", command=self.enter_text)
         self.enter_but.grid(row=7, column=3)
+
+    def enter_text(self):
+        JsonHandler.write_json(self.phone_entry.get(), self.first_entry.get(), self.last_entry.get(),
+                               self.number_entry.get(), self.street_entry.get(), self.city_entry.get(),
+                               self.state_entry.get())
+
+
 
