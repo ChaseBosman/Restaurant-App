@@ -1,15 +1,18 @@
 from tkinter import *
 from json_handler import JsonHandler
 
+
 class MembershipWindow(Toplevel):
-    def __init__(self, master, number):
+    def __init__(self, master, phone_number):
         self.top = Toplevel.__init__(self, master)
         self.geometry("450x300")
         self.title("Member Screen")
-        self.number = number
+        self.number = phone_number
 
         # populate buttons
         self.create_buttons()
+        # insert previously entered phone number into to entry slot
+        self.phone_entry.insert(0, phone_number)
 
     def create_buttons(self):
         self.phone_label = Label(self, text="Phone #:")
@@ -46,9 +49,10 @@ class MembershipWindow(Toplevel):
         self.enter_but.grid(row=7, column=3)
 
     def enter_text(self):
+        # write the new member's data to json file
         JsonHandler.write_json(self.phone_entry.get(), self.first_entry.get(), self.last_entry.get(),
                                self.number_entry.get(), self.street_entry.get(), self.city_entry.get(),
                                self.state_entry.get())
-
+        # upload json file to AWS S3
 
 

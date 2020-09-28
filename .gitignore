@@ -1,4 +1,5 @@
 src/.idea/
+src/data.txt
 src/__pycache__/
 .gitattributes
 .idea/

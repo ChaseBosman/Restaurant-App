@@ -14,10 +14,10 @@ class PhoneNumberWindow(Toplevel):
     def del_text(self):
         self.phone_entry.delete(len(self.phone_entry.get()) - 1, END)
 
-    # method to read entry when enter_but is pressed
+    # method to read phone num when enter_but is pressed
     def enter_text(self):
         MembershipWindow(self, self.phone_entry.get())
-        # delete tbl_entry window text
+        # delete phone_entry window text
         self.phone_entry.delete(0, END)
         return
 
