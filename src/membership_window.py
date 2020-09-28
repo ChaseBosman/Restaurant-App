@@ -2,6 +2,7 @@ from tkinter import *
 from json_handler import JsonHandler
 from s3_handler import S3Handler
 
+
 class MembershipWindow(Toplevel):
     def __init__(self, master, phone_number):
         self.top = Toplevel.__init__(self, master)
@@ -55,7 +56,10 @@ class MembershipWindow(Toplevel):
                                self.state_entry.get())
 
         # upload json file to AWS S3
-        S3Handler.upload_file('data.txt', 'memberships', self.phone_entry.get() + '.txt')
+        if S3Handler.upload_file('data.txt', 'memberships', self.phone_entry.get() + '.txt'):
+            print("Member added!")
+        else:
+            print("Error in adding member!")
 
         self.destroy()
         self.update()
