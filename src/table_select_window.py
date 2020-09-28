@@ -1,5 +1,6 @@
 from tkinter import *
 from table_ticket import TableTicket
+from phone_number_window import PhoneNumberWindow
 import socket
 
 
@@ -39,7 +40,10 @@ class TableSelectWindow:
 
         # delete tbl_entry window text
         self.tbl_entry.delete(0, END)
+        return
 
+    def membership(self):
+        PhoneNumberWindow(self.master)
         return
 
     def set_text(self, text):
@@ -65,6 +69,7 @@ class TableSelectWindow:
         self.num9_but = Button(root_window, text=" 9 ", command=lambda: self.set_text("9"))
         self.delete_but = Button(root_window, text="Delete", command=self.del_text)
         self.enter_but = Button(root_window, text="Enter", command=self.enter_text)
+        self.membership = Button(root_window, text="Member", command=self.membership)
 
         self.num1_but.grid(row=1, column=1)
         self.num2_but.grid(row=1, column=2)
@@ -78,6 +83,7 @@ class TableSelectWindow:
         self.num0_but.grid(row=4, column=2)
         self.delete_but.grid(row=4, column=1)
         self.enter_but.grid(row=4, column=3)
+        self.membership.grid(row=5, column=2)
 
     def define_socket(self):
         host = '127.0.0.1'

@@ -61,9 +61,13 @@ class InProgressWindow:
 
     def item_finished(self):
         item_selected = self.progress_listbox.curselection()
-        finished_item = self.progress_listbox.get(item_selected[0])
+        # remove table from string, save order_num and item as order
+        table, order = self.progress_listbox.get(item_selected[0]).split("-")
+        # remove specific tables nth order and save food item
+        table_order, food_item = order.split(", ")
+        # pass into table struct and remove
+        print(table, table_order, food_item)
         self.progress_listbox.delete(item_selected[0])
-
 
 if __name__ == "__main__":
     root_window = Tk()
