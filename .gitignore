@@ -3,3 +3,5 @@ src/data.txt
 src/__pycache__/
 .gitattributes
 .idea/
+src/client/__pycache__/
+src/server/__pycache__/

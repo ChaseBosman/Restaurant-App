@@ -1,6 +1,6 @@
 from tkinter import *
-from table_ticket import TableTicket
-from phone_number_window import PhoneNumberWindow
+from client.table_ticket import TableTicket
+from client.phone_number_window import PhoneNumberWindow
 import socket
 
 
@@ -51,25 +51,25 @@ class TableSelectWindow:
         return
 
     def create_buttons(self):
-        self.tbl_label = Label(root_window, text="View Table:")
-        self.tbl_entry = Entry(root_window)
+        self.tbl_label = Label(self.master, text="View Table:")
+        self.tbl_entry = Entry(self.master)
 
         self.tbl_label.grid(row=0, column=0)
         self. tbl_entry.grid(row=0, column=1, columnspan=10)
 
-        self.num0_but = Button(root_window, text=" 0 ", command=lambda: self.set_text("0"))
-        self.num1_but = Button(root_window, text=" 1 ", command=lambda: self.set_text("1"))
-        self.num2_but = Button(root_window, text=" 2 ", command=lambda: self.set_text("2"))
-        self.num3_but = Button(root_window, text=" 3 ", command=lambda: self.set_text("3"))
-        self.num4_but = Button(root_window, text=" 4 ", command=lambda: self.set_text("4"))
-        self.num5_but = Button(root_window, text=" 5 ", command=lambda: self.set_text("5"))
-        self.num6_but = Button(root_window, text=" 6 ", command=lambda: self.set_text("6"))
-        self.num7_but = Button(root_window, text=" 7 ", command=lambda: self.set_text("7"))
-        self.num8_but = Button(root_window, text=" 8 ", command=lambda: self.set_text("8"))
-        self.num9_but = Button(root_window, text=" 9 ", command=lambda: self.set_text("9"))
-        self.delete_but = Button(root_window, text="Delete", command=self.del_text)
-        self.enter_but = Button(root_window, text="Enter", command=self.enter_text)
-        self.membership = Button(root_window, text="Member", command=self.membership)
+        self.num0_but = Button(self.master, text=" 0 ", command=lambda: self.set_text("0"))
+        self.num1_but = Button(self.master, text=" 1 ", command=lambda: self.set_text("1"))
+        self.num2_but = Button(self.master, text=" 2 ", command=lambda: self.set_text("2"))
+        self.num3_but = Button(self.master, text=" 3 ", command=lambda: self.set_text("3"))
+        self.num4_but = Button(self.master, text=" 4 ", command=lambda: self.set_text("4"))
+        self.num5_but = Button(self.master, text=" 5 ", command=lambda: self.set_text("5"))
+        self.num6_but = Button(self.master, text=" 6 ", command=lambda: self.set_text("6"))
+        self.num7_but = Button(self.master, text=" 7 ", command=lambda: self.set_text("7"))
+        self.num8_but = Button(self.master, text=" 8 ", command=lambda: self.set_text("8"))
+        self.num9_but = Button(self.master, text=" 9 ", command=lambda: self.set_text("9"))
+        self.delete_but = Button(self.master, text="Delete", command=self.del_text)
+        self.enter_but = Button(self.master, text="Enter", command=self.enter_text)
+        self.membership = Button(self.master, text="Member", command=self.membership)
 
         self.num1_but.grid(row=1, column=1)
         self.num2_but.grid(row=1, column=2)

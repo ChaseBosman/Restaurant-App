@@ -1,5 +1,5 @@
 from tkinter import *
-from db_context_manager import DbContextManager
+from client.db_context_manager import DbContextManager
 
 
 class ItemsWindow(Toplevel):

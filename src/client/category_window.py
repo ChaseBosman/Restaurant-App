@@ -1,6 +1,6 @@
 from tkinter import *
-from db_context_manager import DbContextManager
-from items_window import ItemsWindow
+from client.db_context_manager import DbContextManager
+from client.items_window import ItemsWindow
 
 
 class CategoryWindow(Toplevel):

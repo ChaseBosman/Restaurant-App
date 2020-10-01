@@ -1,7 +1,7 @@
 import threading
 from tkinter import *
-from committed_line_socket import CommittedLineSocket
-from table_queue_structure import TableQueueStructure
+from server.committed_line_socket import CommittedLineSocket
+from server.table_queue_structure import TableQueueStructure
 
 
 class InProgressWindow:

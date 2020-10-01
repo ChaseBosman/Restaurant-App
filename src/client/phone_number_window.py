@@ -1,5 +1,5 @@
 from tkinter import *
-from membership_window import MembershipWindow
+from client.membership_window import MembershipWindow
 
 
 class PhoneNumberWindow(Toplevel):

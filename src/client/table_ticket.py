@@ -1,4 +1,4 @@
-from category_window import CategoryWindow
+from client.category_window import CategoryWindow
 import pickle
 
 

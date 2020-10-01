@@ -1,5 +1,3 @@
-
-
 class OrderStructure:
     def __init__(self, order_num, items):
         self.order_num = order_num

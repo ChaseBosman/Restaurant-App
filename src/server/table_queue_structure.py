@@ -1,4 +1,4 @@
-from order_structure import OrderStructure
+from server.order_structure import OrderStructure
 
 
 class TableQueueStructure:

@@ -1,6 +1,6 @@
 from tkinter import *
-from json_handler import JsonHandler
-from s3_handler import S3Handler
+from client.json_handler import JsonHandler
+from client.s3_handler import S3Handler
 
 
 class MembershipWindow(Toplevel):
