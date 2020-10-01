@@ -55,11 +55,11 @@ class MembershipWindow(Toplevel):
                                self.number_entry.get(), self.street_entry.get(), self.city_entry.get(),
                                self.state_entry.get())
 
-        # upload json file to AWS S3
-        if S3Handler.upload_file('data.txt', 'memberships', self.phone_entry.get() + '.txt'):
-            print("Member added!")
-        else:
-            print("Error in adding member!")
+        if not S3Handler.download_file(self.phone_entry.get() + '.txt', 'memberships', 'data.txt'):
+            if S3Handler.upload_file('data.txt', 'memberships', self.phone_entry.get() + '.txt'):
+                print("Member added!")
+            else:
+                print("Error in adding member!")
 
         self.destroy()
         self.update()
