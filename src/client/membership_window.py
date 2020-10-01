@@ -60,6 +60,8 @@ class MembershipWindow(Toplevel):
                 print("Member added!")
             else:
                 print("Error in adding member!")
+        else:
+            JsonHandler.read_json()
 
         self.destroy()
         self.update()

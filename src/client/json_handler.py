@@ -18,3 +18,10 @@ class JsonHandler:
 
         with open('data.txt', 'w') as outfile:
             json.dump(data, outfile)
+
+    @staticmethod
+    def read_json():
+        data = {}
+        with open('data.txt', 'r') as infile:
+            data = json.load(infile)
+            print("Hello " + str(data['info'][0]['first']) + "!")

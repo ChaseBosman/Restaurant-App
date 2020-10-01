@@ -43,7 +43,6 @@ class S3Handler:
                 return False
         else:
         # file exists so download it
-
             with open(new_file_name, 'wb') as file:
                 s3_client.download_fileobj(bucket, file_name, file)
             return True
