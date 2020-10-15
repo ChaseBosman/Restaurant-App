@@ -24,10 +24,10 @@ class TestPhoneNumberWindow(unittest.TestCase):
         root_window = Tk()
         phone = client.phone_number_window.PhoneNumberWindow(root_window)
         phone.set_text("Hello")
-
-        self.assertEqual(phone.phone_entry.get(), "Hello")
+        phone.del_text()
+        phone.del_text()
+        self.assertEqual(phone.phone_entry.get(), "Hel")
 
 
 if __name__ == '__main__':
     unittest.main()
-    
